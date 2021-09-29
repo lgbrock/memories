@@ -11,9 +11,36 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+
+import { likePost, deletePost } from '../../../actions/posts';
+import useStyles from './styles';
+
+const Post = ({ post, setCurrentId }) => {
+	const dispatch = useDispatch();
+	const classes = useStyles();
+
+	return <h3>POST</h3>;
+};
+
+export default Post;
+
+/*
+import React from 'react';
+import {
+	Card,
+	CardActions,
+	CardContent,
+	CardMedia,
+	Button,
+	Typography,
+} from '@material-ui/core/';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import DeleteIcon from '@material-ui/icons/Delete';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import moment from 'moment';
 
 import useStyles from './styles';
-import Posts from '../Posts';
 
 const Post = ({ post }) => {
 	const classes = useStyles();
@@ -39,7 +66,12 @@ const Post = ({ post }) => {
 					{post.tags.map((tag) => `#${tag} `)}
 				</Typography>
 			</div>
-			<Typography variant='body2' gutterBottom variant='h5' component='h2'>
+			<Typography
+				className={classes.title}
+				gutterBottom
+				variant='h5'
+				component='h2'
+			>
 				{post.title}
 			</Typography>
 			<CardContent>
@@ -62,3 +94,5 @@ const Post = ({ post }) => {
 };
 
 export default Post;
+
+*/

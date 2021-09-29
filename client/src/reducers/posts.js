@@ -1,5 +1,6 @@
 // Used for Redux - Allows for scalability when application grows
-export default (posts = [], action) => {
+// changed how to export because error was showing on DOM - Page still loaded properly
+const posts = (posts = [], action) => {
 	switch (action.type) {
 		case 'FETCH_ALL':
 			return {
@@ -9,9 +10,11 @@ export default (posts = [], action) => {
 		case 'CREATE':
 			return {
 				...posts,
-				posts: [action.payload, ...posts.posts],
+				posts: [...posts.posts, action.payload],
 			};
 		default:
 			return posts;
 	}
 };
+
+export default posts;

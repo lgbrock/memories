@@ -1,7 +1,9 @@
-// import express from 'express';
-// import mongoose from 'mongoose';
+import express from 'express';
+import mongoose from 'mongoose';
+
 import PostModel from '../models/postModel.js';
-// const router = express.Router();
+
+const router = express.Router();
 
 export const getPosts = async (req, res) => {
 	try {
@@ -11,7 +13,19 @@ export const getPosts = async (req, res) => {
 
 		res.status(200).json(postModels);
 	} catch (err) {
-		res.status(404).json({ msg: err.message });
+		res.status(404).json({ message: error.message });
+	}
+};
+
+export const getPost = async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		const post = await PostModel.findById(id);
+
+		res.status(200).json(post);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
 	}
 };
 

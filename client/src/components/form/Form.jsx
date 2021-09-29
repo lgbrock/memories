@@ -32,7 +32,7 @@ const Form = () => {
 				noValidate
 				onSubmit={handleSubmit}
 			>
-				<Typography variant='h5' className={classes.title}>
+				<Typography variant='h6' className={classes.title}>
 					Creating a Memory
 				</Typography>
 				<TextField
@@ -77,7 +77,7 @@ const Form = () => {
 					<FileBase
 						type='file'
 						multiple={false}
-						onDone={(base64) =>
+						onDone={({ base64 }) =>
 							setPostData({ ...postData, selectedFile: base64 })
 						}
 					/>
@@ -96,9 +96,8 @@ const Form = () => {
 					variant='contained'
 					color='secondary'
 					size='small'
-					type='submit'
-					fullWidth
 					onClick={clear}
+					fullWidth
 				>
 					Clear
 				</Button>
