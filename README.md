@@ -16,7 +16,7 @@
 
 ### 🏠 [Homepage](https://github.com/lgbrock/memories)
 
-### ✨ [Demo](https://github.com/lgbrock/memories)
+### ✨ [Demo](https://saved-memories.netlify.app/)
 
 ## Install
 
