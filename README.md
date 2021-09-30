@@ -14,9 +14,7 @@
 
 > This web app is called Memories, and it is a simple social media app that allows users to post interesting events that happened in their lives. The project was created using React, Node.js, Express & MongoDB. Feel free to sign up and give it a try!
 
-### 🏠 [Homepage](https://github.com/lgbrock/memories)
-
-### ✨ [Demo](https://saved-memories.netlify.app/)
+### 🏠 [Homepage](https://saved-memories.netlify.app/)
 
 ## Install
 
