@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts';
 
-const Form = (currentId, setCurrentId) => {
+const Form = ({ currentId, setCurrentId }) => {
 	const [postData, setPostData] = useState({
 		creator: '',
 		title: '',
@@ -15,16 +15,16 @@ const Form = (currentId, setCurrentId) => {
 		selectFile: '',
 	});
 	const post = useSelector((state) =>
-		currentId ? state.posts.find((message) => message._id === currentId) : null
+		currentId ? state.posts.find((p) => p._id === currentId) : null
 	);
-	const dispatch = useDispatch();
 	const classes = useStyles();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (post) setPostData(post);
 	}, [post]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		if (currentId) {

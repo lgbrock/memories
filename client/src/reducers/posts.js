@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 // Used for Redux - Allows for scalability when application grows
 // changed how to export because error was showing on DOM - Page still loaded properly
 export default (posts = [], action) => {
