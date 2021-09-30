@@ -29,5 +29,9 @@ mongoose
 // Routes
 app.use('/posts', postRoutes);
 
+app.get('/', (req, res) => {
+	res.send('Hello to memories api');
+});
+
 // Connect to PORT
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
