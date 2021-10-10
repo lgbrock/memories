@@ -7,15 +7,21 @@ import {
 	Typography,
 	Container,
 } from '@material-ui/core';
+import { GoogleLogin } from 'react-google-login';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Icon from './icon';
+import { AUTH } from '../../constants/actionTypes';
+import Input from './Input';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
-import Input from './Input';
 
 const Auth = () => {
 	const classes = useStyles();
 	const [showPassword, setShowPassword] = useState(false);
-
-	const isSignup = true;
+	const [isSignup, setIsSignup] = useState(false);
+	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const handleShowPassword = () =>
 		setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -26,6 +32,27 @@ const Auth = () => {
 	};
 
 	const handleChange = (e) => {};
+
+	const switchMode = () => {
+		setIsSignup((prevIsSignup) => !prevIsSignup);
+		handleShowPassword(false);
+	};
+
+	const googleSuccess = async (res) => {
+		const result = res?.profileObj;
+		const token = res?.tokenId;
+
+		try {
+			dispatch({ type: AUTH, data: { result, token } });
+
+			history.push('/');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const googleError = () =>
+		alert('Google Sign In was unsuccessful. Try again later');
 
 	return (
 		<Container maxWidth='xs' component='main'>
@@ -84,6 +111,34 @@ const Auth = () => {
 					>
 						{isSignup ? 'Sign Up' : 'Sign in'}
 					</Button>
+					<GoogleLogin
+						clientId='243512469488-mo444ca24n2ojp6mtqdnt34hunrvu090.apps.googleusercontent.com'
+						render={(renderProps) => (
+							<Button
+								className={classes.googleButton}
+								color='primary'
+								fullWidth
+								onClick={renderProps.onClick}
+								disabled={renderProps.disabled}
+								startIcon={<Icon />}
+								variant='contained'
+							>
+								Google Sign In
+							</Button>
+						)}
+						onSuccess={googleSuccess}
+						onFailure={googleError}
+						cookie-policy='single_host_origin'
+					/>
+					<Grid container justifyContent='flex-end'>
+						<Grid item>
+							<Button onClick={switchMode}>
+								{isSignup
+									? 'Already have an account? Sign in!'
+									: 'Dont have an account? Sign up!'}
+							</Button>
+						</Grid>
+					</Grid>
 				</form>
 			</Paper>
 		</Container>
