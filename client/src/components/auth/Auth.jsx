@@ -13,13 +13,24 @@ import { useHistory } from 'react-router-dom';
 import Icon from './icon';
 import { AUTH } from '../../constants/actionTypes';
 import Input from './Input';
+import { signin, signup } from '../../actions/auth';
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
+
+const initialState = {
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: '',
+	confirmPassword: '',
+};
 
 const Auth = () => {
 	const classes = useStyles();
 	const [showPassword, setShowPassword] = useState(false);
 	const [isSignup, setIsSignup] = useState(false);
+	const [formData, setFormData] = useState(initialState);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -28,10 +39,17 @@ const Auth = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('handleSubmit');
+
+		if (isSignup) {
+			dispatch(signup(formData, history));
+		} else {
+			dispatch(signin(formData, history));
+		}
 	};
 
-	const handleChange = (e) => {};
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 
 	const switchMode = () => {
 		setIsSignup((prevIsSignup) => !prevIsSignup);
