@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import postRoutes from './routes/posts.js';
-import userRoutes from './routes/users.js';
+import userRouter from './routes/user.js';
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -29,7 +29,7 @@ mongoose
 
 // Routes
 app.use('/posts', postRoutes);
-app.use('/users', userRoutes);
+app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
 	res.send('Hello to memories api');
